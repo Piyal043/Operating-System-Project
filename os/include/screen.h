@@ -87,7 +87,7 @@ void printch(char c)
 							break;
 		default:
 							vidmem [ ( (cursorY * sw  + cursorX)) *sd] =c;
-							vidmem [ ( (cursorY * sw  + cursorX)) *sd +1]=0x24;
+							vidmem [ ( (cursorY * sw  + cursorX)) *sd +1]=0x0F;
 							cursorX++;
 							break;
 	}
@@ -102,7 +102,8 @@ void printch(char c)
 void print (string ch)
 {
 	uint16 i=0;
-	for(i;i<strlength(ch);i++)
+	uint8 length = strlength(ch)-1;
+	for(i;i<length;i++)
 	{
 		printch(ch[i]);
 	}
