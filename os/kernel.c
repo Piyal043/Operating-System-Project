@@ -1,7 +1,8 @@
 #include "include/screen.h"
 #include "include/kb.h"
 #include "include/string.h"
-kmain()
+#include "include/substr.h"
+int kmain()
 {
   
 	   clearScreen();
@@ -19,7 +20,22 @@ kmain()
                 {
                         clearScreen();
                 }
-                
+                else if(strEql(ch,"print"))
+		{
+			
+			print("\n Give input: \n");
+			
+			string nw=readStr();
+			print("\n output: \n");
+			print(nw);
+			
+		}
+		else if(strEql(ch,"match"))
+			{
+				print("Enter string: ");
+				ch = readStr();
+				match(ch);
+			}
                 else
                 {
                         print("\nBad command!\n");

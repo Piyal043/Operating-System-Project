@@ -7,14 +7,14 @@
 string readStr()
 {
     char buff;
-    string buffstr;
+    string buffstr = (char*) (0xb8000 + 5000);
     uint8 i = 0;
     uint8 reading = 1;
     while(reading)
     {
-        if(inportb(0x64) & 0x1)                 //0x64 senses if the keyboard is pressed
+        if(inportb(0x64) & 0x1)                 
         {
-            switch(inportb(0x60))				//0x60 read what is pressed in keyboard
+            switch(inportb(0x60))
             { 
       /*case 1:
                 printch('(char)27);           Escape button
@@ -82,9 +82,11 @@ string readStr()
                 i++;
                 break;
         case 14:
-                printch('\b');
-                i--;
-                buffstr[i] = 0;
+				if (i > 0) {
+					printch('\b');
+					i--;
+					buffstr[i] = 0;
+				}
                 break;
        /* case 15:
                 printch('\t');          Tab button
@@ -152,8 +154,8 @@ string readStr()
                 i++;
                 break;
         case 28:
-               // printch('\n');
-               // buffstr[i] = '\n';
+               printch('\n');
+               buffstr[i] = 0;
                   i++;
                reading = 0;
                 break;
@@ -304,8 +306,7 @@ string readStr()
                 break;
             }
         }
-    }
-    buffstr[i] = 0;                   
+    }                  
     return buffstr;
 }
 #endif
