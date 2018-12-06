@@ -96,7 +96,7 @@ void printch(char c)
 		cursorX=0;
 		cursorY++;
 	}
-	//newlineCheck();
+	newLineCheck( );
 	updateCursor();
 }
 void print (string ch)

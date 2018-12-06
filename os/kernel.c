@@ -6,7 +6,29 @@ int kmain()
 {
   
 	   clearScreen();
-       print("Welcome to Piyal's operating system\nPlease enter a command\n");
+       print("Welcome to Piyal's operating system\nPlease enter username and password\n");
+	string username = "os";
+	   string password = "1111";
+	   
+	   string inp = 0;
+	   while (1) {
+		   uint8 uOK = 0, pOK = 0;
+		   
+		   print("username: ");
+		   inp = readStr();
+		   if (strEql(inp, username)) uOK = 1;
+		   
+		   print("password: ");
+		   inp = readStr();
+		   if (strEql(inp, password)) pOK = 1;
+		   
+		   if (uOK && pOK) {
+			   print("Login Done!\n");
+			   break;
+		   }
+		   print("Wrong info. Try again\n");
+	   }
+	print("Enter your command\n");
        while (1)
        {
                 print("\nPiyal:> ");
@@ -23,10 +45,10 @@ int kmain()
                 else if(strEql(ch,"print"))
 		{
 			
-			print("\n Give input: \n");
+			print("Give input: \n");
 			
 			string nw=readStr();
-			print("\n output: \n");
+			print("output: \n");
 			print(nw);
 			
 		}
@@ -36,11 +58,17 @@ int kmain()
 				ch = readStr();
 				match(ch);
 			}
+		else if(strEql(ch,"off"))
+		{
+			print("Logging off\n");
+			break;
+		}
                 else
                 {
                         print("\nBad command!\n");
                 }
                 
-                print("\n");        
+                print("\n");    
+		//newLineCheck( ) ;  
        }
 }
